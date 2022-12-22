@@ -1,0 +1,18 @@
+{
+    "name": "lordkugenheim/lkmvc",
+    "description": "A simple PHP framework to build MVC applications",
+    "type": "project",
+    "homepage": "https://github.com/lordkugenheim/LKMVC/",
+    "authors": [
+        {
+            "name": "Ben Taylor-Wilson",
+            "email": "ben@ben-taylor.co.uk",
+            "homepage": "http://www.ben-taylor.co.uk"
+        }
+    ],    
+    "license": "MIT",
+    "require": {
+        "php": "^7.4",
+        "illuminate/database": "^8.83"
+    }
+}
