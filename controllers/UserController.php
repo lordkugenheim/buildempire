@@ -4,24 +4,26 @@ namespace controllers;
 
 use \app\classes\Request;
 
-class User extends Controller
+class UserController extends Controller
 {
-
     private $userId;
+    private $User;
+    private $Model;
 
     public function __construct()
     {
-        $this->userId = Request::otherParameters()[0];
+        $this->User = new \app\classes\User();
 
-        if (is_numeric($this->userId)) {
-
-        } else {
+        if (!$this->loadUserId()) {
             $this->loadView('json', [
                 'status' => 'error',
                 'data' => 'Missing or invalid userId',
                 'http_status' => 400
             ]);
         }
+
+        $this->Model = new UserModel();
+        
     }
 
     /**
@@ -49,5 +51,16 @@ class User extends Controller
     public function httpDelete()
     {
 
+    }
+
+    public function loadUserId()
+    {
+        $userId = Request::otherParameters()[0];
+
+        if (is_numeric($userId)) {
+            $this->userId = $userId;
+            return true;
+        }
+        return false;
     }
 }

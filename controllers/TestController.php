@@ -3,6 +3,7 @@
 namespace controllers;
 
 use \app\classes\Request;
+use \app\classes\Test;
 
 /**
  * Test Controller
@@ -12,7 +13,7 @@ use \app\classes\Request;
  * @author Ben Taylor-Wilson <ben@ben-taylor.co.uk>
  * @see http://www.ben-taylor.co.uk/LKMVC
  */
-class Test extends Controller
+class TestController extends Controller
 {
     /**
      * Get Endpoint
@@ -20,7 +21,7 @@ class Test extends Controller
      */
     public function httpGet()
     {
-        $test = new \app\classes\Test();
+        $test = new Test();
         $this->loadView(
             'json',
             $test->repeat(Request::otherParameters())

@@ -29,7 +29,7 @@ class Request
      */
     public static function controller()
     {
-        return ucwords(self::getValatIndex(0));
+        return ucwords(self::getValatIndex(0)) . 'Controller';
     }
 
     /**
