@@ -2,6 +2,7 @@
 
 namespace controllers;
 
+use \app\classes\User;
 use \app\classes\Request;
 use \models\UserModel;
 
@@ -13,8 +14,6 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->User = new \app\classes\User();
-
         if (!$this->loadUserId()) {
             $this->loadView('json', [
                 'status' => 'error',
@@ -22,6 +21,8 @@ class UserController extends Controller
                 'http_status' => 400
             ]);
         }
+
+        $this->User = new User();
 
         $this->Model = new UserModel();
     }
@@ -31,11 +32,15 @@ class UserController extends Controller
      */
     public function httpGet()
     {
-        $test = new \app\classes\Test();
-        $this->loadView(
-            'json',
-            $test->repeat(Request::otherParameters())
-        );
+        $user_data = $this->Model
+            ->where('id', $this->userId)
+            ->get()
+            ->toArray();
+        
+        $this->loadView('json', [
+            'status' => 'success',
+            'data' => $user_data
+        ]);
     }
 
     public function httpPost()
