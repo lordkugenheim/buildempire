@@ -13,6 +13,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
-        "illuminate/database": "^8.83"
+        "illuminate/database": "^8.83",
+        "vlucas/phpdotenv": "^5.5"
     }
 }
