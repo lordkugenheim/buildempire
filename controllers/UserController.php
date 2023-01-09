@@ -8,20 +8,11 @@ use \models\UserModel;
 
 class UserController extends Controller
 {
-    private $userId;
     private $User;
     private $Model;
 
     public function __construct()
     {
-        if (!$this->loadUserId()) {
-            $this->loadView('json', [
-                'status' => 'error',
-                'data' => 'Missing or invalid userId',
-                'http_status' => 400
-            ]);
-        }
-
         $this->User = new User();
 
         $this->Model = new UserModel();
@@ -32,8 +23,10 @@ class UserController extends Controller
      */
     public function httpGet()
     {
+        $userId = $this->getUserIdOrDie();
+
         $user_data = $this->Model
-            ->where('id', $this->userId)
+            ->where('id', $userId)
             ->get()
             ->toArray();
         
@@ -45,6 +38,7 @@ class UserController extends Controller
 
     public function httpPost()
     {
+        $userId = $this->getUserIdOrDie();
 
     }
 
@@ -55,17 +49,33 @@ class UserController extends Controller
 
     public function httpDelete()
     {
+        $userId = $this->getUserIdOrDie();
 
+        $user_data = $this->Model
+        ->where('id', $userId)
+        ->get();
+
+        $user_data->delete();
+    
+        $this->loadView('json', [
+            'status' => 'success',
+            'data' => 'User ' . $userId . ' was deleted'
+        ]);
+        
     }
 
-    public function loadUserId()
+    public function getUserIdOrDie()
     {
         $userId = Request::otherParameters()[0];
 
         if (is_numeric($userId)) {
-            $this->userId = $userId;
-            return true;
+            return $userId;
+        } else {
+            $this->loadView('json', [
+                'status' => 'error',
+                'data' => 'Missing or invalid userId',
+                'http_status' => 400
+            ]);
         }
-        return false;
     }
 }
