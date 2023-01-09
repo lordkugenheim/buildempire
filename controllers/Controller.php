@@ -1,5 +1,9 @@
 <?php
 
+namespace controllers;
+
+use app\classes\Request;
+
 /**
  * Base controller class
  *
@@ -11,27 +15,7 @@
 class Controller
 {
     protected $view;
-    protected $endpoint;
     protected $model;
-
-    /**
-     * Instantiates associated endpoint
-     * Endpoint class must be the same name with 'Endpoint' as suffix
-     */
-    public function __construct()
-    {
-        $this->loadEndpoint(get_called_class());
-    }
-
-    /*
-     * instantiate a model
-     * @param $model_name - we will append the 'Model' suffix
-     */
-    public function loadEndpoint($endpoint_name)
-    {
-        $endpoint_name .= 'Endpoint';
-        $this->endpoint = new $endpoint_name();
-    }
 
     /**
      * Static method to include a view

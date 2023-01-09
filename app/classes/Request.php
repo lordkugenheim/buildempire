@@ -1,5 +1,7 @@
 <?php
 
+namespace app\classes;
+
 /**
  * Helper class to interpret HTTP requests
  *

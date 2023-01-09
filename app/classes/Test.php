@@ -1,14 +1,16 @@
 <?php
 
+namespace app\classes;
+
 /**
- * Test Model
+ * Test Endpoint
  *
  * Simple endpoint that will return the input value as json
  *
  * @author Ben Taylor-Wilson <ben@ben-taylor.co.uk>
  * @see http://www.ben-taylor.co.uk/LKMVC
  */
-class TestEndpoint
+class Test
 {
     /**
      * Returns supplied data in json format with
@@ -16,7 +18,7 @@ class TestEndpoint
      * @param $data string to be repeated
      * @return array suitable for json encoding
      */
-    public function httpGet($data)
+    public function repeat($data)
     {
         if (!empty($data)) {
             return [

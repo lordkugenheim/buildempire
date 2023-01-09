@@ -1,5 +1,9 @@
 <?php
 
+namespace app;
+
+use app\classes\Request;
+
 /**
  * Core class for LKMVC Framework
  *
@@ -37,7 +41,8 @@ class Core
     private function callController($controller)
     {
         if (file_exists(DIR_CONTROL . $controller . '.php')) {
-            $this->controller = new $controller();
+            $class = '\\controllers\\' . $controller;
+            $this->controller = new $class();
             return true;
         }
         return false;
