@@ -28,10 +28,8 @@ class Controller
         $view_path = DIR_VIEW . ltrim($view_name, '/') . '.php';
         if (file_exists($view_path)) {
             include($view_path);
-            return true;
-        } else {
-            return false;
         }
+        die;
     }
 
     /*
