@@ -3,6 +3,7 @@
 namespace controllers;
 
 use \app\classes\Request;
+use \models\UserModel;
 
 class UserController extends Controller
 {
@@ -23,7 +24,6 @@ class UserController extends Controller
         }
 
         $this->Model = new UserModel();
-        
     }
 
     /**

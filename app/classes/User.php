@@ -6,7 +6,7 @@ class User
 {
     private $model;
 
-    public function __construct($user_id)
+    public function __construct()
     {
         // get the model here
     }
@@ -15,4 +15,5 @@ class User
     {
         return $model->name;
     }
+
 }

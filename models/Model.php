@@ -1,8 +1,10 @@
 <?php
 
-namespace app\models;
+namespace models;
 
-class Model
+use Illuminate\Database\Eloquent\Model as Eloquent;
+
+class Model extends Eloquent
 {
 
 }
